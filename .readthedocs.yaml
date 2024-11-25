@@ -1,23 +1,54 @@
+# .readthedocs.yaml
 # Read the Docs configuration file
 # See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
 
-# Required
 version: 2
 
-# Set the OS, Python version, and other tools you might need
+# Set the OS and Python version
 build:
-  os: ubuntu-24.04
+  os: ubuntu-22.04
   tools:
-    python: "3.13"
+    python: "3.9"  # Specify Python version
 
-# Build documentation in the "docs/" directory with Sphinx
+# Build documentation in the docs/source directory with Sphinx
 sphinx:
-   configuration: docs/conf.py
+  configuration: docs/source/conf.py
+  fail_on_warning: false  # Set to true if you want builds to fail on warnings
 
-# Optionally, but recommended,
-# declare the Python requirements required to build your documentation
-# See https://docs.readthedocs.io/en/stable/guides/reproducible-builds.html
-# python:
-#    install:
-#    - requirements: docs/requirements.txt
-        
+# Optionally set the version of Python and requirements
+python:
+  install:
+    - method: pip
+      path: .
+      extra_requirements:
+        - docs
+    - requirements: requirements.txt
+
+# Additional formats to build documentation
+formats:
+  - pdf
+  - epub
+
+# Build additional documentation versions
+# Comment this section if you don't need multiple versions
+#submodules:
+#  include: all
+#  recursive: true
+
+# Declare the Python requirements required to build your documentation
+build:
+  apt_packages:
+    - pandoc  # Only if you need pandoc for documentation
+
+  jobs:
+    post_create_environment:
+      # Install additional dependencies if needed
+      - pip install sphinx-rtd-theme
+      - pip install sphinx-autodoc-typehints
+      - pip install nbsphinx
+      - pip install ipykernel
+      - pip install pyabf
+      - pip install pandas
+      - pip install numpy
+      - pip install scipy
+      - pip install tqdm
