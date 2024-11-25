@@ -5,25 +5,24 @@ build-backend = "hatchling.build"
 [project]
 name = "nanopore-event-detector"
 version = "0.1.0"
-authors = [
-  { name="Faceless Void", email="mxs2361@mavs.uta.edu" },
-]
 description = "A robust event detection system for nanopore signals"
-readme = "README.md"
-requires-python = ">=3.8"
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-    "Topic :: Scientific/Engineering :: Bio-Informatics",
-]
+requires-python = ">=3.9"
 dependencies = [
     "numpy>=1.20.0",
     "pandas>=1.3.0",
     "scipy>=1.7.0",
     "pyabf>=2.3.0",
+    "tqdm>=4.65.0",
 ]
 
-[project.urls]
-"Homepage" = "https://github.com/facevoid/nanopore-event-detector"
-"Bug Tracker" = "https://github.com/facevoid/nanopore-event-detector/issues"
+[project.optional-dependencies]
+docs = [
+    "sphinx>=4.5.0",
+    "sphinx-rtd-theme>=1.0.0",
+    "sphinx-autodoc-typehints>=1.18.0",
+    "nbsphinx>=0.8.9",
+    "ipykernel>=6.0.0",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
