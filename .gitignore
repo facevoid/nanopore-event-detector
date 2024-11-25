@@ -55,7 +55,7 @@ output/
 data/
 *.csv
 *.xlsx
-*.txt
+# *.txt
 
 # System files
 .DS_Store

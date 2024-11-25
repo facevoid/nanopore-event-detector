@@ -1,0 +1,23 @@
+# Core dependencies
+numpy>=1.20.0
+pandas>=1.3.0
+scipy>=1.7.0
+pyabf>=2.3.0
+tqdm>=4.65.0
+
+# Testing dependencies
+pytest>=7.0.0
+pytest-cov>=4.0.0
+
+# Documentation dependencies
+sphinx>=4.5.0
+sphinx-rtd-theme>=1.0.0
+sphinx-autodoc-typehints>=1.18.0
+nbsphinx>=0.8.9
+jupyter>=1.0.0
+
+# Development dependencies
+black>=22.3.0
+flake8>=4.0.1
+isort>=5.10.1
+mypy>=0.950
