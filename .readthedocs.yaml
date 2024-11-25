@@ -1,48 +1,15 @@
 # .readthedocs.yaml
 # Read the Docs configuration file
-# See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
-
 version: 2
 
 # Set the OS and Python version
 build:
   os: ubuntu-22.04
   tools:
-    python: "3.9"  # Specify Python version
-
-# Build documentation in the docs/source directory with Sphinx
-sphinx:
-  configuration: docs/source/conf.py
-  fail_on_warning: false  # Set to true if you want builds to fail on warnings
-
-# Optionally set the version of Python and requirements
-python:
-  install:
-    - method: pip
-      path: .
-      extra_requirements:
-        - docs
-    - requirements: requirements.txt
-
-# Additional formats to build documentation
-formats:
-  - pdf
-  - epub
-
-# Build additional documentation versions
-# Comment this section if you don't need multiple versions
-#submodules:
-#  include: all
-#  recursive: true
-
-# Declare the Python requirements required to build your documentation
-build:
-  apt_packages:
-    - pandoc  # Only if you need pandoc for documentation
-
+    python: "3.9"
   jobs:
     post_create_environment:
-      # Install additional dependencies if needed
+      # Install additional dependencies
       - pip install sphinx-rtd-theme
       - pip install sphinx-autodoc-typehints
       - pip install nbsphinx
@@ -52,3 +19,22 @@ build:
       - pip install numpy
       - pip install scipy
       - pip install tqdm
+  apt_packages:
+    - pandoc
+
+# Build documentation in the docs/source directory with Sphinx
+sphinx:
+  configuration: docs/source/conf.py
+  fail_on_warning: false
+
+# Optionally declare the Python requirements required to build docs
+python:
+  install:
+    - method: pip
+      path: .
+    - requirements: requirements.txt
+
+# Generate PDF & ePub
+formats:
+  - pdf
+  - epub
